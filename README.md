@@ -2,7 +2,7 @@
 
 # Leaderboard
 
-> This is a personal todo project that allows users to manage their daily tasks.
+> The is my leaderboard website that displays scores submitted by different players
 
 
 ## Built With
