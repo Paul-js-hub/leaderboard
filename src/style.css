@@ -22,7 +22,11 @@ body {
   padding: 8px;
 }
 
-.scores p:nth-child(even) {
+li.list-item {
+  list-style: none;
+}
+
+.scores li:nth-child(even) {
   background: lightslategrey;
 }
 

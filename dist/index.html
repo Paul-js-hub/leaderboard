@@ -1,41 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Leaderboard</title>
-<script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script></head>
-<body>
+  <script defer src="runtime.bundle.js"></script><script defer src="index.bundle.js"></script></head>
+  <body>
     <main>
-        <section class="container">
-            <h1>Leaderboard</h1>
-            <div class="row score-container">
-                <div class="col-6 inner-left-container">
-                    <div class="inner-left-header">
-                        <h3>Recent scores</h3>
-                        <button type="button">Refresh</button>
-                    </div>
-                    <div class="scores">
-                        <p>Paul: <span>100</span></p>
-                        <p>Paul: <span>70</span></p>
-                        <p>Paul: <span>125</span></p>
-                        <p>Paul: <span>150</span></p>
-                        <p>Paul: <span>120</span></p>
-                    </div>
-                </div>
-                <div class="col-6 inner-right-container">
-                        <div class="inner-right-header">
-                            <h3>Add your score</h3>
-                        </div>
-                        <form>
-                            <input id="name" type="text" placeholder="Your name"/>
-                            <input id="score" type="text" placeholder="Your score"/>
-                        </form>
-                        <button id="submit-btn" type="submit">Submit</button>
-                </div>
+      <section class="container mt-3">
+        <h1>Leaderboard</h1>
+        <div class="row score-container">
+          <div class="col-6 inner-left-container">
+            <div class="inner-left-header">
+              <h3>Recent scores</h3>
+              <button type="button">Refresh</button>
             </div>
-        </section>
+            <div class="scores mt-3">
+            </div>
+          </div>
+          <div class="col-6 inner-right-container">
+            <div class="inner-right-header">
+              <h3>Add your score</h3>
+            </div>
+            <form>
+              <input id="name" type="text" placeholder="Your name" />
+              <input id="score" type="text" placeholder="Your score" />
+            </form>
+            <button id="submit-btn" type="submit">Submit</button>
+          </div>
+        </div>
+      </section>
     </main>
-</body>
+  </body>
 </html>
