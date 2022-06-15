@@ -12,16 +12,16 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-//Selectors
+// Selectors
 
-let refresh = document.querySelector('.refresh');
-let submitBtn = document.querySelector('.submit-btn')
+const refresh = document.querySelector('.refresh');
+const submitBtn = document.querySelector('.submit-btn');
 
 refresh.addEventListener('click', _modules_leaderboard_js__WEBPACK_IMPORTED_MODULE_2__.getRefreshData);
 
 window.addEventListener('load', _modules_leaderboard_js__WEBPACK_IMPORTED_MODULE_2__.getRefreshData);
-submitBtn.addEventListener('click', ()=>{
-    (0,_modules_leaderboard_js__WEBPACK_IMPORTED_MODULE_2__.postData)();
+submitBtn.addEventListener('click', () => {
+  (0,_modules_leaderboard_js__WEBPACK_IMPORTED_MODULE_2__.postData)();
 });
 
 
@@ -745,8 +745,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 // Selectors
 const scores = document.querySelector('.scores');
-let name = document.getElementById('name');
-let score = document.getElementById('score');
+const name = document.getElementById('name');
+const score = document.getElementById('score');
 
 const getLeaderBoard = (leaderboard) => {
   let output = '';
@@ -758,26 +758,32 @@ const getLeaderBoard = (leaderboard) => {
   });
 };
 
-const postData = async ()=>{
-  await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/7K5Mb2IEqF6pzV8ILX7k/scores', {
-    method:'POST',
-    body:JSON.stringify({
-      user: name.value,
-      score: score.value
-    }),
-    headers: {
-      'Content-type': 'application/json; charset=UTF-8',
-    }
-  });
-  name.value = ''
-  score.value = ''
-}
+const postData = async () => {
+  await fetch(
+    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/7K5Mb2IEqF6pzV8ILX7k/scores',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        user: name.value,
+        score: score.value,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    },
+  );
+  name.value = '';
+  score.value = '';
+};
 
-const getRefreshData = async ()=>{
-  let res = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/7K5Mb2IEqF6pzV8ILX7k/scores');
-  let data = await res.json();
-  getLeaderBoard(data.result)
-}
+const getRefreshData = async () => {
+  const res = await fetch(
+    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/7K5Mb2IEqF6pzV8ILX7k/scores',
+  );
+  const data = await res.json();
+  getLeaderBoard(data.result);
+};
+
 
 /***/ })
 ],
