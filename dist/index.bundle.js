@@ -12,7 +12,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,_modules_leaderboard_js__WEBPACK_IMPORTED_MODULE_2__["default"])();
+// Selectors
+
+const refresh = document.querySelector('.refresh');
+const submitBtn = document.querySelector('.submit-btn');
+
+refresh.addEventListener('click', _modules_leaderboard_js__WEBPACK_IMPORTED_MODULE_2__.getRefreshData);
+
+window.addEventListener('load', _modules_leaderboard_js__WEBPACK_IMPORTED_MODULE_2__.getRefreshData);
+submitBtn.addEventListener('click', () => {
+  (0,_modules_leaderboard_js__WEBPACK_IMPORTED_MODULE_2__.postData)();
+});
+
 
 /***/ }),
 /* 1 */
@@ -728,31 +739,51 @@ ___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */   "getLeaderBoard": () => (/* binding */ getLeaderBoard),
+/* harmony export */   "getRefreshData": () => (/* binding */ getRefreshData),
+/* harmony export */   "postData": () => (/* binding */ postData)
 /* harmony export */ });
-const leaderboard = [
-  { name: 'Paul', score: 100 },
-  { name: 'Winnie', score: 50 },
-  { name: 'Fridah', score: 150 },
-  { name: 'Peter', score: 70 },
-];
-
 // Selectors
 const scores = document.querySelector('.scores');
+const name = document.getElementById('name');
+const score = document.getElementById('score');
 
-const getLeaderBoard = () => {
+const getLeaderBoard = (leaderboard) => {
+  let output = '';
   leaderboard.map((leader) => {
-    const leaderElement = document.createElement('li');
-    leaderElement.classList.add('list-item');
-    const output = `
-      <p>${leader.name}: <span>${leader.score}</span></p>
+    output += `
+      <li class="list-item"><p>${leader.user}: <span>${leader.score}</span></p></li>
               `;
-    leaderElement.innerHTML = output;
-    scores.appendChild(leaderElement);
+    scores.innerHTML = output;
   });
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (getLeaderBoard);
+const postData = async () => {
+  await fetch(
+    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/7K5Mb2IEqF6pzV8ILX7k/scores',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        user: name.value,
+        score: score.value,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    },
+  );
+  name.value = '';
+  score.value = '';
+};
+
+const getRefreshData = async () => {
+  const res = await fetch(
+    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/7K5Mb2IEqF6pzV8ILX7k/scores',
+  );
+  const data = await res.json();
+  getLeaderBoard(data.result);
+};
+
 
 /***/ })
 ],
