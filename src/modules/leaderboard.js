@@ -1,23 +1,35 @@
-const leaderboard = [
-  { name: 'Paul', score: 100 },
-  { name: 'Winnie', score: 50 },
-  { name: 'Fridah', score: 150 },
-  { name: 'Peter', score: 70 },
-];
-
 // Selectors
 const scores = document.querySelector('.scores');
+let name = document.getElementById('name');
+let score = document.getElementById('score');
 
-const getLeaderBoard = () => {
+export const getLeaderBoard = (leaderboard) => {
+  let output = '';
   leaderboard.map((leader) => {
-    const leaderElement = document.createElement('li');
-    leaderElement.classList.add('list-item');
-    const output = `
-      <p>${leader.name}: <span>${leader.score}</span></p>
+    output += `
+      <li class="list-item"><p>${leader.user}: <span>${leader.score}</span></p></li>
               `;
-    leaderElement.innerHTML = output;
-    scores.appendChild(leaderElement);
+    scores.innerHTML = output;
   });
 };
 
-export default getLeaderBoard;
+export const postData = async ()=>{
+  await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/7K5Mb2IEqF6pzV8ILX7k/scores', {
+    method:'POST',
+    body:JSON.stringify({
+      user: name.value,
+      score: score.value
+    }),
+    headers: {
+      'Content-type': 'application/json; charset=UTF-8',
+    }
+  });
+  name.value = ''
+  score.value = ''
+}
+
+export const getRefreshData = async ()=>{
+  let res = await fetch('https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/7K5Mb2IEqF6pzV8ILX7k/scores');
+  let data = await res.json();
+  getLeaderBoard(data.result)
+}
