@@ -8,27 +8,42 @@
   </head>
   <body>
     <main>
+      <h1>Leaderboard</h1>
       <section class="container mt-3">
-        <h1>Leaderboard</h1>
         <div class="row score-container">
           <div class="col-6 inner-left-container">
             <div class="inner-left-header">
               <h3>Recent scores</h3>
-              <button class="refresh" type="button">Refresh</button>
+              <button id="submit-btn" class="refresh btn btn-primary mb-2" type="button">
+                Refresh
+              </button>
             </div>
-            <div class="scores mt-3"></div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Score</th>
+                </tr>
+              </thead>
+              <tbody class="scores mt-3">
+              </tbody>
+            </table>
           </div>
           <div class="col-6 inner-right-container">
             <div class="inner-right-header">
               <h3>Add your score</h3>
             </div>
-            <form>
-              <input id="name" type="text" placeholder="Your name" />
-              <input id="score" type="text" placeholder="Your score" />
+            <form action="#">
+              <div class="form-group mx-sm-3 mb-2">
+                <input type="text" class="form-control" id="name" placeholder="Your Name">
+              </div>
+              <div class="form-group mx-sm-3 mb-2">
+                <input type="text" class="form-control" id="score" placeholder="Your Score">
+              </div>
+              <button id="submit-btn" class="submit-btn btn btn-primary mb-2" type="submit">
+                Submit
+              </button>
             </form>
-            <button id="submit-btn" class="submit-btn" type="submit">
-              Submit
-            </button>
           </div>
         </div>
       </section>

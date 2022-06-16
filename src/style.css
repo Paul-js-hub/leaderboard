@@ -9,12 +9,21 @@ body {
   font-family: Quintessential, sans-serif;
 }
 
+h1 {
+  margin-left: 48px
+}
+
 .inner-left-header {
   display: flex;
   justify-content: space-between;
+  align-items: end;
 }
 
-.scores {
+.inner-right-header > h3{
+  padding-left: 21px;
+}
+
+.table {
   border: 2px solid black;
 }
 
@@ -38,7 +47,17 @@ button {
 form {
   display: flex;
   flex-direction: column;
-  height: 50%;
+  height: 100%;
   width: 75%;
   justify-content: space-evenly;
+}
+
+.form-group {
+  padding: 8px;
+}
+
+.submit-btn {
+  align-self: flex-end;
+  margin-right: 24px;
+  width: 35%;
 }
