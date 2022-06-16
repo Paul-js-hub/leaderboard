@@ -10,7 +10,7 @@ body {
 }
 
 h1 {
-  margin-left: 48px
+  margin-left: 48px;
 }
 
 .inner-left-header {
@@ -19,7 +19,7 @@ h1 {
   align-items: end;
 }
 
-.inner-right-header > h3{
+.inner-right-header > h3 {
   padding-left: 21px;
 }
 
