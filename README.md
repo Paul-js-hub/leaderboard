@@ -2,6 +2,10 @@
 
 # Leaderboard
 
+![GitHub stars](https://img.shields.io/github/stars/Paul-js-hub/README.md?style=social)
+![GitHub forks](https://img.shields.io/github/forks/Paul-js-hub/README.md?style=social)
+![Twitter Follow](https://img.shields.io/twitter/follow/Paulhezzy1?style=social)
+
 > The is my leaderboard website that displays scores submitted by different players
 
 

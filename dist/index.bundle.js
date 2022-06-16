@@ -20,7 +20,8 @@ const submitBtn = document.querySelector('.submit-btn');
 refresh.addEventListener('click', _modules_leaderboard_js__WEBPACK_IMPORTED_MODULE_2__.getRefreshData);
 
 window.addEventListener('load', _modules_leaderboard_js__WEBPACK_IMPORTED_MODULE_2__.getRefreshData);
-submitBtn.addEventListener('click', () => {
+submitBtn.addEventListener('click', (e) => {
+  e.preventDefault();
   (0,_modules_leaderboard_js__WEBPACK_IMPORTED_MODULE_2__.postData)();
 });
 
@@ -728,7 +729,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_noSourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n  background-color: #fff;\r\n  font-family: Quintessential, sans-serif;\r\n}\r\n\r\n.inner-left-header {\r\n  display: flex;\r\n  justify-content: space-between;\r\n}\r\n\r\n.scores {\r\n  border: 2px solid black;\r\n}\r\n\r\n.scores p {\r\n  padding: 8px;\r\n}\r\n\r\nli.list-item {\r\n  list-style: none;\r\n}\r\n\r\n.scores li:nth-child(even) {\r\n  background: lightslategrey;\r\n}\r\n\r\nbutton {\r\n  box-shadow: 2px 4px;\r\n  width: 25%;\r\n}\r\n\r\nform {\r\n  display: flex;\r\n  flex-direction: column;\r\n  height: 50%;\r\n  width: 75%;\r\n  justify-content: space-evenly;\r\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "* {\r\n  margin: 0;\r\n  padding: 0;\r\n  box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n  background-color: #fff;\r\n  font-family: Quintessential, sans-serif;\r\n}\r\n\r\nh1 {\r\n  margin-left: 48px;\r\n}\r\n\r\n.inner-left-header {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: end;\r\n}\r\n\r\n.inner-right-header > h3 {\r\n  padding-left: 21px;\r\n}\r\n\r\n.table {\r\n  border: 2px solid black;\r\n}\r\n\r\n.scores p {\r\n  padding: 8px;\r\n}\r\n\r\nli.list-item {\r\n  list-style: none;\r\n}\r\n\r\n.scores li:nth-child(even) {\r\n  background: lightslategrey;\r\n}\r\n\r\nbutton {\r\n  box-shadow: 2px 4px;\r\n  width: 25%;\r\n}\r\n\r\nform {\r\n  display: flex;\r\n  flex-direction: column;\r\n  height: 100%;\r\n  width: 75%;\r\n  justify-content: space-evenly;\r\n}\r\n\r\n.form-group {\r\n  padding: 8px;\r\n}\r\n\r\n.submit-btn {\r\n  align-self: flex-end;\r\n  margin-right: 24px;\r\n  width: 35%;\r\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -752,7 +753,10 @@ const getLeaderBoard = (leaderboard) => {
   let output = '';
   leaderboard.map((leader) => {
     output += `
-      <li class="list-item"><p>${leader.user}: <span>${leader.score}</span></p></li>
+    <tr>
+    <td>${leader.user}</td>
+    <td>${leader.score}</td>
+  </tr>
               `;
     scores.innerHTML = output;
   });
@@ -760,12 +764,13 @@ const getLeaderBoard = (leaderboard) => {
 
 const postData = async () => {
   await fetch(
-    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/7K5Mb2IEqF6pzV8ILX7k/scores',
+    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/dgHPKWE2TV4mqSkx1sAA/scores',
     {
       method: 'POST',
       body: JSON.stringify({
         user: name.value,
         score: score.value,
+        index: Date.now(),
       }),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -778,7 +783,7 @@ const postData = async () => {
 
 const getRefreshData = async () => {
   const res = await fetch(
-    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/7K5Mb2IEqF6pzV8ILX7k/scores',
+    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/dgHPKWE2TV4mqSkx1sAA/scores',
   );
   const data = await res.json();
   getLeaderBoard(data.result);

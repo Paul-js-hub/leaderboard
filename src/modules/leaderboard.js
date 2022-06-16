@@ -7,7 +7,10 @@ export const getLeaderBoard = (leaderboard) => {
   let output = '';
   leaderboard.map((leader) => {
     output += `
-      <li class="list-item"><p>${leader.user}: <span>${leader.score}</span></p></li>
+    <tr>
+    <td>${leader.user}</td>
+    <td>${leader.score}</td>
+  </tr>
               `;
     scores.innerHTML = output;
   });
@@ -15,12 +18,13 @@ export const getLeaderBoard = (leaderboard) => {
 
 export const postData = async () => {
   await fetch(
-    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/7K5Mb2IEqF6pzV8ILX7k/scores',
+    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/dgHPKWE2TV4mqSkx1sAA/scores',
     {
       method: 'POST',
       body: JSON.stringify({
         user: name.value,
         score: score.value,
+        index: Date.now(),
       }),
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -33,7 +37,7 @@ export const postData = async () => {
 
 export const getRefreshData = async () => {
   const res = await fetch(
-    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/7K5Mb2IEqF6pzV8ILX7k/scores',
+    'https://us-central1-js-capstone-backend.cloudfunctions.net/api/games/dgHPKWE2TV4mqSkx1sAA/scores',
   );
   const data = await res.json();
   getLeaderBoard(data.result);

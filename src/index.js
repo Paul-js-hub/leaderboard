@@ -11,6 +11,7 @@ const submitBtn = document.querySelector('.submit-btn');
 refresh.addEventListener('click', getRefreshData);
 
 window.addEventListener('load', getRefreshData);
-submitBtn.addEventListener('click', () => {
+submitBtn.addEventListener('click', (e) => {
+  e.preventDefault();
   postData();
 });
